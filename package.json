@@ -1,0 +1,27 @@
+{
+  "name": "mia_practica201800464",
+  "version": "1.0.0",
+  "description": "curso archivos",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "dev": "node main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PabloAndresArg/MIA_PRACTICA201800464.git"
+  },
+  "keywords": [
+    "MIA"
+  ],
+  "author": "pablo andres argueta hernandez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PabloAndresArg/MIA_PRACTICA201800464/issues"
+  },
+  "homepage": "https://github.com/PabloAndresArg/MIA_PRACTICA201800464#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

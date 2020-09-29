@@ -2,7 +2,7 @@
   "name": "mia_practica201800464",
   "version": "1.0.0",
   "description": "curso archivos",
-  "main": "index.js",
+  "main": "./build/index.js",
   "scripts": {
     "start": "node  /build/index.js",
     "build": "tsc -w",

@@ -1,9 +1,10 @@
 import {Request ,Response} from 'express'
 import db from '../database'; // es el pool 
 class IndexController{
-  public Metodoindex  (req : Request,res: Response){ 
+  public async Metodoindex  (req : Request,res: Response){ 
     //res.send('hola');
-    res.json({text:'la api esta funcionando'});
+    res.json({text:'la api esta funcionando Y Conectada'});
+    db.query('DESCRIBE games;');
   }
 }
 

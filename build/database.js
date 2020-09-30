@@ -4,8 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const promise_mysql_1 = __importDefault(require("promise-mysql"));
-const keys_1 = __importDefault(require("./keys"));
-const pool = promise_mysql_1.default.createPool(keys_1.default.database);
+const keys = {
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'p1',
+    multipleStatements: true
+};
+const pool = promise_mysql_1.default.createPool(keys);
 //npm i promise-mysql@3.3.1    necesito esto para que jale la conexion 
 pool.getConnection().
     then(connection => {

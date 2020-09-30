@@ -1,5 +1,4 @@
 create database p1;
-
 use p1; 
 CREATE TABLE games(
     id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY , 
@@ -9,4 +8,4 @@ CREATE TABLE games(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-DESCRIBE game; 
+DESCRIBE games; 

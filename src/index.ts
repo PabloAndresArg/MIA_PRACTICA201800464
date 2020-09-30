@@ -11,7 +11,10 @@ class Server{
     }
     configurar():void{
         this.app.set('port',process.env.PORT || 3000);
-        this.app.use(morgan('dev'));
+        this.app.use(morgan('dev'));// me ayuda a ver las peticiones
+        //this.app.use(cors()); para comunicarse entre 2 servidores 
+        this.app.use(ModuloExpress.json());// para que entienda el formato json
+        this.app.use(ModuloExpress.urlencoded({extended:false}));//para enviar desde formulario html
     }
     setRutas():void{
         this.app.use(indexRoutes);

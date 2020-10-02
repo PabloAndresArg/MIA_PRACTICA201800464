@@ -19,57 +19,83 @@ CREATE TABLE temporal (
     precioUnitario decimal(4) not null
 );
 /* CREACION DE MODELO RELACIONAL */
-/* QUERIES PARA MI MODELO  */
-
-use p1; 
-
+/* QUERYES PARA MI BASE DE DATOS */
+use p1;
 /*				NO DEPENDIENTES 			*/
 CREATE TABLE IF NOT EXISTS compania(
 	idCompania INT not null auto_increment, 
     nombre varchar(60) not null, 
-    contacto varchar(60)not null,
-    correo varchar(60)not null ,
+    contacto varchar(60) not null,
+    correo varchar(60) not null ,
+    telefono varchar(60) not null, 
 	PRIMARY KEY (idCompania)
 );
 
 CREATE TABLE IF NOT exists ciudad(
 	idCiudad INT NOT NULL auto_increment,
     nombreCiudad varchar(60) not null, 
-    codigoPostal INT NOT NULL,
     PRIMARY KEY (idCiudad)
 );
 
 CREATE TABLE IF NOT exists region (
 	idRegion INT NOT NULL auto_increment,
-    region varchar(60) NOT NULL, 
+    region varchar(60) not NULL, 
     PRIMARY KEY (idRegion)
+);
+CREATE TABLE IF NOT EXISTS codigoPostal(
+	idCodigoPostal INT NOT NULL AUTO_INCREMENT,
+    codigoPostal INT  not null,
+    PRIMARY KEY (idCodigoPostal)
 );
 
 /*		TABLAS DEPENDIENTES O CON LLAVES FORANEAS	*/
+CREATE TABLE IF NOT EXISTS direccion (
+	idDireccion INT NOT NULL auto_increment, 
+    direccion varchar(60) not null,
+    idCodigoPostal Int not null,
+    PRIMARY KEY (idDireccion),
+	foreign key (idCodigoPostal) REFERENCES codigoPostal (idCodigoPostal) 
+); 	
+create table IF NOT EXISTS categoria (
+	idCategoria int not null auto_increment, 
+    categoria varchar(60) not  null,
+    PRIMARY KEY (idCategoria)
+);
+
 
 CREATE TABLE IF NOT EXISTS cliente(
 	idCliente INT NOT NULL AUTO_INCREMENT , 
-    nombre varchar(60) NOT NULL , 
-    correo varchar(60) NOT NULL , 
+    nombre varchar(60)  not NULL , 
+    correo varchar(60)  not NULL , 
     telefono varchar(15) not null,
-    fechaRegistro DATE not null, 
+    fechaRegistro DATE  null, 
     idCiudad  INT NOT NULL , 
     idRegion INT NOT NULL ,
-    direccion varchar(60) not null , 
-    primary key(idCliente , idCiudad , idRegion), 
+    idDireccion INT NOT NULL , 
+    primary key(idCliente), 
     foreign key (idRegion) REFERENCES region (idRegion) 
     ON DELETE CASCADE 
     ON UPDATE CASCADE,
 	foreign key (idCiudad) REFERENCES ciudad(idCiudad)
+	ON DELETE CASCADE 
+    ON UPDATE CASCADE,
+	foreign key (idDireccion) REFERENCES direccion(idDireccion)
 	ON DELETE CASCADE 
     ON UPDATE CASCADE
 );
 CREATE TABLE IF NOT EXISTS producto(
 	idProducto INT NOT NULL AUTO_INCREMENT, 
 	precioUnitario DECIMAL(4) NOT NULL ,
-    categoria VARCHAR(60) NOT NULL,
-    primary key (idProducto)
+	idCategoria int not null,
+    nombre varchar(60) not null, 
+    primary key (idProducto),
+	foreign key (idCategoria) REFERENCES categoria(idCategoria)
+	ON DELETE CASCADE 
+    ON UPDATE CASCADE
+    
 );
+
+
 
 CREATE TABLE IF NOT exists compra(
 idCompra INT NOT NULL auto_increment, 
@@ -93,7 +119,7 @@ CREATE TABLE IF NOT EXISTS detalleCompra(
     idProducto INT NOT NULL,
     cantidad INT NOT NULL, 
     subtotal decimal(4) NOT NULL, 
-    PRIMARY KEY (idDetalleCompra , idCompra , idCliente , idCompania),
+    PRIMARY KEY (idDetalleCompra),
     FOREIGN KEY (idCompra , idCliente , idCompania) references compra(idCompra , idCliente , idCompania)
     ON DELETE CASCADE 
 	ON UPDATE CASCADE,
@@ -101,6 +127,8 @@ CREATE TABLE IF NOT EXISTS detalleCompra(
     ON DELETE CASCADE 
 	ON UPDATE CASCADE
 );
+
+
 
 CREATE TABLE IF NOT EXISTS proveedor(
 	idProveedor INT NOT NULL AUTO_INCREMENT , 
@@ -110,12 +138,15 @@ CREATE TABLE IF NOT EXISTS proveedor(
     fechaRegistro DATE not null, 
     idCiudad  INT NOT NULL , 
     idRegion INT NOT NULL ,
-    direccion varchar(60) not null , 
-    primary key(idProveedor , idCiudad , idRegion), 
+	idDireccion INT NOT NULL , 
+    primary key(idProveedor), 
     foreign key (idRegion) REFERENCES region (idRegion) 
     ON DELETE CASCADE 
     ON UPDATE CASCADE,
     foreign key (idCiudad) REFERENCES ciudad(idCiudad)
+	ON DELETE CASCADE 
+    ON UPDATE CASCADE,
+	foreign key (idDireccion) REFERENCES direccion(idDireccion)
 	ON DELETE CASCADE 
     ON UPDATE CASCADE
 );
@@ -136,13 +167,13 @@ ON UPDATE CASCADE
 
 CREATE TABLE IF NOT EXISTS detalleOrden(
 	idDetalleOrden INT NOT NULL, 
+	idProducto INT NOT NULL,
     idOrden INT NOT NULL,
     idProveedor INT NOT NULL,
     idCompania INT NOT NULL,
-    idProducto INT NOT NULL,
     cantidad INT NOT NULL, 
     subtotal decimal(4) NOT NULL, 
-    PRIMARY KEY (idDetalleOrden , idOrden , idProveedor , idCompania),
+    PRIMARY KEY (idDetalleOrden),
     FOREIGN KEY (idOrden , idProveedor , idCompania) references orden(idOrden , idProveedor , idCompania)
     ON DELETE CASCADE 
 	ON UPDATE CASCADE,
@@ -150,15 +181,6 @@ CREATE TABLE IF NOT EXISTS detalleOrden(
     ON DELETE CASCADE 
 	ON UPDATE CASCADE
 );
-
-
-
-
-
-
-
-
-
 
 
 /*ELIMINAR TODOS LOS DATOS DE LA TABLA TEMPORAL*/

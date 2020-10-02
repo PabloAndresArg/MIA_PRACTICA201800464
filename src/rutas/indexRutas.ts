@@ -11,6 +11,8 @@ class IndexRoutes{
   addRutas():void{
    // this.router.get('/',(req,res)=>{res.send('hola');});
    this.router.get('/' , indexController.Metodoindex);
+   this.router.get('/cargarTemporal',indexController.MetodocargarTemporal);
+   this.router.get('/eliminarTemporal',indexController.MetodoEliminarTemporal);
   }
 
 }

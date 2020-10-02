@@ -22,6 +22,27 @@ class IndexController {
             database_1.default.query('DESCRIBE games;');
         });
     }
+    MetodocargarTemporal(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield database_1.default.query(`
+    LOAD DATA LOCAL INFILE '/home/pablo/Documentos/GitHub/MIA_PRACTICA201800464/DataCenterData.csv'
+    INTO TABLE temporal
+    character set latin1
+    FIELDS TERMINATED BY ';'
+    LINES TERMINATED BY '\r\n'
+    IGNORE 1 lines
+    (nombreComp,contactoComp,correoComp,telefonoComp,tipo,nombre,correo,tel,fechaRegistro,direccion,cuidad,codigoPostal,region,producto,categoriaProducto,cantidad,precioUnitario)
+    SET fechaRegistro=str_to_date(@var1,'%d%m%Y');
+    `);
+            res.json('carga de la temporal Realizada correctamente');
+        });
+    }
+    MetodoEliminarTemporal(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield database_1.default.query(`TRUNCATE TABLE temporal;`);
+            res.json('TABLA TEMPORAL SIN REGISTROS , OK');
+        });
+    }
 }
 exports.indexController = new IndexController();
 // usa la misma logica que javascript 

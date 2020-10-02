@@ -9,7 +9,7 @@ class Metodo{
   }
   public async eliminar( req:Request , res: Response ){
     await db.query('DELETE FROM  games WHERE id = ?',req.params.id); // 
-    res.json('funado ')
+    res.json('funado')
   }
   public async actualizar(req:Request , res: Response){
 

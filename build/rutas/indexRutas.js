@@ -10,6 +10,8 @@ class IndexRoutes {
     addRutas() {
         // this.router.get('/',(req,res)=>{res.send('hola');});
         this.router.get('/', indexController_1.indexController.Metodoindex);
+        this.router.get('/cargarTemporal', indexController_1.indexController.MetodocargarTemporal);
+        this.router.get('/eliminarTemporal', indexController_1.indexController.MetodoEliminarTemporal);
     }
 }
 const indice = new IndexRoutes();

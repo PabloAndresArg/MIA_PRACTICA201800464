@@ -26,7 +26,7 @@ class Metodo {
     eliminar(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             yield database_1.default.query('DELETE FROM  games WHERE id = ?', req.params.id); // 
-            res.json('funado ');
+            res.json('funado');
         });
     }
     actualizar(req, res) {

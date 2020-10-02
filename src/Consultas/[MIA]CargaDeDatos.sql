@@ -5,7 +5,7 @@ character set latin1
 FIELDS TERMINATED BY ';'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 lines
-(nombreComp,contactoComp,correoComp,telefonoComp,tipo,nombre,correo,tel,fechaRegistro,direccion,cuidad,codigoPostal,region,producto,categoriaProducto,cantidad,precioUnitario)
+(nombreComp,contactoComp,correoComp,telefonoComp,tipo,nombre,correo,tel,fechaRegistro,direccion,ciudad,codigoPostal,region,producto,categoriaProducto,cantidad,precioUnitario)
 SET fechaRegistro=str_to_date(@var1,'%d%m%Y');
 
 
@@ -25,3 +25,4 @@ FROM temporal;
 /*POSTAL*/
 INSERT INTO codigoPostal (codigoPostal) select distinct codigoPostal from temporal; 
 /*CIUDAD*/
+INSERT INTO ciudad (nombreCiudad) select distinct temporal.ciudad FROM temporal; 

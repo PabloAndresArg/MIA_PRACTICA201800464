@@ -10,7 +10,7 @@ CREATE TABLE temporal (
     tel	   varchar(15) not null,
     fechaRegistro date not null, 
     direccion varchar (60) not null, 
-    cuidad varchar(60) not null,
+    ciudad varchar(60) not null,
     codigoPostal int not null,
     region varchar(60) not null,
     producto varchar(60) not null,

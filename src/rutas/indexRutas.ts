@@ -13,6 +13,9 @@ class IndexRoutes{
    this.router.get('/' , indexController.Metodoindex);
    this.router.get('/cargarTemporal',indexController.MetodocargarTemporal);
    this.router.get('/eliminarTemporal',indexController.MetodoEliminarTemporal);
+   this.router.get('/crearTemporal',indexController.crearTemporal);
+   this.router.get('/cargarModelo',indexController.crearYcargarModelo);
+    this.router.get('/eliminarModelo' , indexController.eliminarModelo)
   }
 
 }

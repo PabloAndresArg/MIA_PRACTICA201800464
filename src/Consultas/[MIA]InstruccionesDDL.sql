@@ -19,6 +19,7 @@
         precioUnitario decimal(4) not null
     );
 /* CREACION DE MODELO RELACIONAL */
+/* QUERYES PARA MI BASE DE DATOS */
     use p1;
     /*				NO DEPENDIENTES 			*/
     CREATE TABLE IF NOT EXISTS compania(
@@ -108,13 +109,12 @@
 
 
     CREATE TABLE IF NOT EXISTS detalleCompra(
-        idDetalleCompra INT NOT NULL, 
+        idDetalleCompra INT NOT NULL auto_increment, 
         idCompra INT NOT NULL,
         idCliente INT NOT NULL,
         idCompania INT NOT NULL,
         idProducto INT NOT NULL,
         cantidad INT NOT NULL, 
-        subtotal decimal(4) NOT NULL, 
         PRIMARY KEY (idDetalleCompra),
         FOREIGN KEY (idCompra , idCliente , idCompania) references compra(idCompra , idCliente , idCompania)
         ON DELETE CASCADE 
@@ -154,13 +154,12 @@
     );
 
     CREATE TABLE IF NOT EXISTS detalleOrden(
-        idDetalleOrden INT NOT NULL, 
+        idDetalleOrden INT NOT NULL auto_increment, 
         idProducto INT NOT NULL,
         idOrden INT NOT NULL,
         idProveedor INT NOT NULL,
         idCompania INT NOT NULL,
         cantidad INT NOT NULL, 
-        subtotal decimal(4) NOT NULL, 
         PRIMARY KEY (idDetalleOrden),
         FOREIGN KEY (idOrden , idProveedor , idCompania) references orden(idOrden , idProveedor , idCompania)
         ON DELETE CASCADE 
@@ -170,11 +169,23 @@
         ON UPDATE CASCADE
     );
 
-
 /*ELIMINAR TODOS LOS DATOS DE LA TABLA TEMPORAL*/
 TRUNCATE TABLE temporal;
 
 
 /* DELETE DE TODAS MI TABLAS :v */
-
-
+SET FOREIGN_KEY_CHECKS=0;
+drop table detalleCompra; 
+drop table detalleOrden;
+drop table proveedor ;
+drop table cliente;
+drop table direccion;
+drop table producto; 
+drop table categoria; 
+drop table region; 
+drop table compania;
+drop table codigoPostal;
+drop table ciudad;
+drop table compra;
+drop table orden;
+SET FOREIGN_KEY_CHECKS=1;

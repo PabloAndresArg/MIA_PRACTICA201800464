@@ -12,6 +12,9 @@ class IndexRoutes {
         this.router.get('/', indexController_1.indexController.Metodoindex);
         this.router.get('/cargarTemporal', indexController_1.indexController.MetodocargarTemporal);
         this.router.get('/eliminarTemporal', indexController_1.indexController.MetodoEliminarTemporal);
+        this.router.get('/crearTemporal', indexController_1.indexController.crearTemporal);
+        this.router.get('/cargarModelo', indexController_1.indexController.crearYcargarModelo);
+        this.router.get('/eliminarModelo', indexController_1.indexController.eliminarModelo);
     }
 }
 const indice = new IndexRoutes();

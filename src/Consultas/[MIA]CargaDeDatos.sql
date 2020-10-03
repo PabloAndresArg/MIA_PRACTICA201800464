@@ -55,3 +55,15 @@ temporal.nombre , temporal.correo
 FROM direccion , temporal
 WHERE temporal.tipo = 'P' 
 AND direccion.direccion = temporal.direccion;
+/* INSERTANDO ORDENES */
+INSERT into orden (idProveedor , idCompania)
+select distinct proveedor.idProveedor , compania.idCompania
+FROM temporal , compania , proveedor
+where proveedor.nombre = temporal.nombre /*lleva la temporal porque la uso en las condiciones*/
+and compania.nombre = temporal.nombreComp; 
+/* INSERTANDO COMPRAS */
+INSERT into compra (idCliente , idCompania)
+select distinct cliente.idCliente , compania.idCompania
+FROM temporal , compania , cliente/*lleva la temporal porque la uso en las condiciones*/
+where cliente.nombre  = temporal.nombre 
+and compania.nombre = temporal.nombreComp; 

@@ -16,7 +16,7 @@
         producto varchar(60) not null,
         categoriaProducto varchar(60) not null,
         cantidad int not null,
-        precioUnitario decimal(4) not null
+        precioUnitario decimal(10,2) not null
     );
 /* CREACION DE MODELO RELACIONAL */
 /* QUERYES PARA MI BASE DE DATOS */
@@ -82,7 +82,7 @@
 
     CREATE TABLE IF NOT EXISTS producto(
         idProducto INT NOT NULL AUTO_INCREMENT, 
-        precioUnitario DECIMAL(4) NOT NULL ,
+        precioUnitario decimal(10,2) not null,
         idCategoria int not null,
         nombre varchar(60) not null, 
         primary key (idProducto),

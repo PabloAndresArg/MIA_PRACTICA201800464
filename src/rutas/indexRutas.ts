@@ -26,6 +26,7 @@ class IndexRoutes{
    this.router.get('/consulta8' , indexController.consulta8);
    this.router.get('/consulta9' , indexController.consulta9);
    this.router.get('/consulta10' , indexController.consulta10);
+   this.router.get('/consulta4/v2', indexController.consulta4_v2);
   }
 
 }

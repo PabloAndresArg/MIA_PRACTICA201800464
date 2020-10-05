@@ -184,3 +184,13 @@ ORDER BY TOTAL_PRODUCTOS_sadfood DESC LIMIT 10 ;
 
 
 
+/*4. VERSION 2.0   */
+select cliente.idCliente , cliente.nombre as NOMBRE_CLIENTE , cliente.telefono , cliente.correo ,count(compra.idCompra) as cantidadCompras  ,  sum(detalleCompra.cantidad) as TotalProductos  
+from  detalleCompra , cliente , compra, producto , categoria
+WHERE detalleCompra.idCliente = cliente.idCliente 
+AND   detalleCompra.idCompra = compra.idCompra
+AND   producto.idProducto = detalleCompra.idProducto
+AND   producto.idCategoria = categoria.idCategoria
+AND   categoria.categoria = 'cheese'
+GROUP BY cliente.idCliente , cliente.nombre 
+ORDER BY TotalProductos DESC LIMIT 5;

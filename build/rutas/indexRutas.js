@@ -25,6 +25,7 @@ class IndexRoutes {
         this.router.get('/consulta8', indexController_1.indexController.consulta8);
         this.router.get('/consulta9', indexController_1.indexController.consulta9);
         this.router.get('/consulta10', indexController_1.indexController.consulta10);
+        this.router.get('/consulta4/v2', indexController_1.indexController.consulta4_v2);
     }
 }
 const indice = new IndexRoutes();
